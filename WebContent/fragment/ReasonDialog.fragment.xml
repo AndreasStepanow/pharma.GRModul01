@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+
+	<SelectDialog id="idReasonDialog" noDataText="No Reasons Found"
+		title="{i18n>ReasonDialog.Title}" confirm="onReasonSelect"
+		items="{path: 'erp>/ReasonSet', 
+				filters: [{path: 'Field', operator: 'EQ', value1: 'erp>Field'}],
+				 events: {
+    				dataRequested: '.onReasonRequested',
+    				dataReceived: '.onReasonReceived',
+    				change: '.onReasonChange'
+  				}
+		}">
+		
+		<StandardListItem title="{erp>Text}"
+			iconDensityAware="false" iconInset="false" type="Active">
+			<customData>
+				<core:CustomData key="Number" value="{erp>Number}">
+				</core:CustomData>
+			</customData>
+		</StandardListItem>
+		
+	</SelectDialog>
+
+</core:FragmentDefinition>
+		

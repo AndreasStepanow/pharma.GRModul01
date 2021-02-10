@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+
+	<Dialog title="{i18n>SerialNumberDialog.Title}" stretch="true">
+		<content>
+			<Panel>
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<Input id="idSerialNumberInput"
+							value="{local>/GoodsReceipt/ExistTLog/Input}"
+							submit="onSerialNumberSubmit">
+						</Input>
+						<!--ndc:BarcodeScannerButton
+							scanSuccess="onSerialNumberScanSuccess">
+						</ndc:BarcodeScannerButton-->
+					</Toolbar>
+				</headerToolbar>
+			</Panel>
+			
+			<List id="idSerialNumberList"
+				items="{local>/GoodsReceipt/ExistTLog/SerialNumbers}" mode="Delete"
+				delete="onSerialNumberDelete">
+				<StandardListItem title="{local>SerialNumber}"
+					description="{ProductId}"
+					iconDensityAware="false" iconInset="false" />
+			</List>
+		</content>
+
+		<beginButton>
+			<Button id="idSerialNumberAcceptButton"
+				text="{i18n>General.OK}" press="onSerialNumberDialogAccept" />
+		</beginButton>
+
+		<!--endButton>
+			<Button id="idSerialNumberAbbortButton"
+				text="{i18n>General.Abort}" press="onSerialNumberDialogAbort" />
+		</endButton-->
+
+	</Dialog>
+</core:FragmentDefinition>
+		

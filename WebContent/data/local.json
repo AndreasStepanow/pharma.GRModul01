@@ -1,0 +1,124 @@
+{
+	"OpenCheckList":[],
+	"CmrRefCreated": false,
+	"CmrRefState": "00",
+	"Header": {
+		"expanded": true
+	},
+	"Employee": {
+		"ID": "",
+		"User": "",
+		"Name": "",
+		"Lgnum": ""
+	},
+	"Loading1": {
+		"CombinationGR": {
+			"yes": false,
+			"no": false
+		},
+		"CmrRef": "",
+		"CheckId": "",
+		"CheckEditable": true,
+		"RoughGR": "",
+		"Zbetrst": "",
+		"Client": "",
+		"TemperatureList": [],
+		"Temperature": {
+			"key": "",
+			"text": "",
+			"reasonText": "",
+			"reasonEnable": true
+		},
+		"Erdat": ""
+	},
+	"Loading2": {
+		"Spedition": "",
+		"VehicleReg": "",
+		"TimeOfOpening": "",
+		"TimeOfClosing": ""
+	},
+	"GoodsReceipt": {
+		"CurrentReasonField": "00",
+		"ExistCmr": {	
+			"yes": false,
+			"no": false		
+		},
+		"ExistTempPrint": {		
+			"yes": false,
+			"no": false			
+		},
+		"ExistTLog": {	
+			"yes": false,
+			"no": false,				
+			"text": "",
+			"Input": "",
+			"SerialNumbers": []
+		},
+		"ExistPlomb": {		
+			"yes": false,
+			"no": false,	
+			"key": "",	
+			"OtherReason": ""			
+		},
+		"ExistColliCnt": {	
+			"yes": false,
+			"no": false,		
+			"text": ""
+		},
+		"ExistColliStt": {	
+			"yes": false,
+			"no": false,
+			"key": "",	
+			"OtherReason": ""		
+		},
+		"PalettHt": {
+			"yes": false,
+			"no": false,
+			"mixed": false,
+			"key": "",	
+			"keys": [],
+			"OtherReason":""
+		}
+	},
+	"Signature": {
+		"Comment": "",
+		"NameExtern": "",
+		"NameIntern": ""
+	},
+	"Check": {
+		"State": {
+			"Open": "00",
+			"PreEntryInWork": "10",
+			"PreEntryCompleted": "20"
+		}
+	},
+	"Locations": [
+		{
+			"Name": "HW1",
+			"Descr": "HW1"
+		},
+		{
+			"Name": "HW3",
+			"Descr": "HW3"
+		},		
+		{
+			"Name": "ES1",
+			"Descr": "ES1"
+		}
+	],
+	"Temperatures": [
+		{
+			"key": "1",
+			"text": "2 - 8"
+		},
+		{
+			"key": "2",
+			"text": "15 - 25"
+		},
+		{
+			"key": "9",
+			"text": "andere",
+			"reasonEnable": true
+		}
+	]
+}

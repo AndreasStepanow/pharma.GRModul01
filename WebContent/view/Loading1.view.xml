@@ -1,0 +1,181 @@
+<mvc:View
+	controllerName="de.arvato.GRModul01.controller.Loading1"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic"
+	xmlns:libs="de.arvato.GRModul01.libs">
+
+	<sem:FullscreenPage id="idLoading1"
+		title="{i18n>App.Description} / {i18n>Loading.Title1}"
+		showNavButton="true" navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button text="{i18n>General.Next}" press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul01.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idFormLoading1" editable="true">
+			<!--f:title> <core:Title text="{i18n>titleCheckLoading1}" /> </f:title -->
+			<f:layout>
+				<!--f:ColumnLayout / -->
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="4" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<f:FormElement>
+							<f:fields>
+
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<Text text="{i18n>Main.CombinationGR}">											
+										</Text>
+										<RadioButtonGroup id="idCombinationGRGroup" columns="2"
+											select="onCombinationGRSelect">
+											<buttons>
+												<RadioButton id="idRadio20" class="radioButton"
+													text="{i18n>textYes}"
+													selected="{local>/Loading1/CombinationGR/yes}" />
+												<RadioButton id="idRadio21" text="{i18n>textNo}"
+													selected="{local>/Loading1/CombinationGR/no}" />
+											</buttons>
+
+										</RadioButtonGroup>
+
+									</items>
+
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>CMRReferenceLabel}">
+							<f:fields>
+								<FlexBox>
+									<items>
+										<Input id="idCMRReference"
+											editable="{local>/Loading1/CheckEditable}"
+											value="{
+												path : 'local>/Loading1/CmrRef',
+												type : 'sap.ui.model.type.String', 
+												constraints : {
+													minLength : 1,
+													maxLength : 50 } 
+												}">
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Input>
+										<Button icon="sap-icon://write-new"
+											enabled="{=${local>/Loading1/CheckEditable} === false}"
+											press="onCMRChangeButtonPress"></Button>
+
+									</items>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>textRoughGRInput}">
+							<f:fields>
+								<FlexBox>
+									<items>
+
+										<ComboBox id="idRoughGRComboBox" width="100%"
+											enabled="{local>/Loading1/CheckEditable}"
+											items="{path:'erp>/RoughGRSet',
+													paramters:{expand:'Check'},
+													sorter:[{path:'Zgweno', descending: true}],
+													filters: [{path:'Zupdate',operator:'EQ',value1:'1'}],
+													events: {    													
+    													dataReceived: '.onRoughGRReceived'    													
+  													}
+												}"
+											change="onRoughGRChange"
+											selectionChange="onRoughGRSelectionChange">
+											<core:Item key="{erp>Zgweno}"
+												text="{erp>Zgweno} {erp>Zbetrst} {erp>Mandt} {path:'erp>Erdat',type:'sap.ui.model.type.Date'} {path:'erp>Erzet',type:'sap.ui.model.odata.type.Time'}"
+												id="idRoughGRComboBoxItem">
+											</core:Item>
+											<layoutData>
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</ComboBox>
+
+										<!--ComboBox id="idRoughGRComboBox" width="100%" items="{path:'erp>/RoughGRSet', 
+											sorter:[{path:'Zgweno'}], filters: [{path:'Open',operator:'EQ',value1:'true'}, 
+											{path:'Mandt',operator:'NE',value1:'000'}] }" selectionChange="onRoughGRSelectionChange"> 
+											<core:Item key="{erp>Zgweno}" text="{erp>Zgweno} {erp>Zbetrst} {erp>Mandt} 
+											{path:'erp>Erdat',type:'sap.ui.model.type.Date'} {path:'erp>Erzet',type:'sap.ui.model.odata.type.Time'}" 
+											id="idRoughGRComboBoxItem"> </core:Item> <layoutData> <FlexItemData growFactor="1" 
+											/> </layoutData> </ComboBox -->
+
+										<!--ndc:BarcodeScannerButton scanSuccess="onRoughGRScanSuccess" 
+											scanFail="onRoughGRScanFail"> </ndc:BarcodeScannerButton -->
+
+
+										<libs:ScanButton id="idRoughGRScanButton"
+											enabled="{local>/Loading1/CheckEditable}" inputType="Number"
+											dialogTitle="{i18n>General.ScanRoughGR}"
+											dialogIcon="sap-icon://visits"
+											dialogAbortText="{i18n>General.AbortButton}"
+											inputSuccess="onRoughGRInputSuccess"></libs:ScanButton>
+
+
+									</items>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>textTemperatureRange}">
+							<f:fields>
+								<!--ComboBox id="idTemperatureComboBox" items="{local>/Temperatures}" 
+									selectionChange="onTemperatureSelectionChange"> <core:Item key="{local>key}" 
+									text="{local>text} &#8451;" id="idTemperatureComboBoxItem"> <core:customData> 
+									<core:CustomData key="reasonEnable" value="{local>reasonEnable}"></core:CustomData> 
+									</core:customData> </core:Item> </ComboBox -->
+
+								<MultiComboBox id="idTemperatureComboBox"
+									items="{path: 'erp>/DomainValueSet', 
+										    filters: [{path:'Name',operator:'EQ',value1:'ZPHA_GR_TEMP_RANGE'}]}"
+									selectionChange="onTemperatureSelectionChange"
+									selectionFinish="onTemperatureSelectionFinish">
+
+									<core:Item key="{erp>Value}" text="{erp>Text}"
+										id="idTemperatureComboBoxItem">
+										<!--core:Item key="{erp>Value}" text="{erp>Text} &#8451;" id="idTemperatureComboBoxItem" -->
+										<!--core:customData> <core:CustomData key="reasonEnable" value="{local>/Loading1/Temperature/reasonEnable}"></core:CustomData> 
+											</core:customData -->
+									</core:Item>
+								</MultiComboBox>
+
+
+							</f:fields>
+						</f:FormElement>
+
+						<!-- Anlieferdatum wird aus GrobWE übernommen -->
+						<!--f:FormElement label="{i18n>textLoadDate}"> <f:fields> <DatePicker 
+							id="idDatePicker1" value="{ path : 'local>/Loading1/Erdat', type : 'sap.ui.model.type.Date', 
+							formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss' } }, constraints: 
+							{ minimum: '2010-01-01', maximum: '2020-01-01' }}" class="sapUiSmallMarginBottom" 
+							/> </f:fields> </f:FormElement -->
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul01.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

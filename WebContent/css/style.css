@@ -1,0 +1,20 @@
+/* Enter your custom styles here */
+.sapMInput.myCustomCSSClass .sapMInputBaseInner {
+    text-transform: uppercase;
+}
+
+.sapMRb {
+	height: 2,2rem;
+}
+
+.MyFlexItem {
+	width: 50%
+}
+
+.MyFlexItem1 {
+	width: 50%
+}
+
+.myTextClass {
+	font-weight: bold;
+}

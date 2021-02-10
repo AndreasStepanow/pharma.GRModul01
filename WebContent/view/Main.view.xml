@@ -1,0 +1,81 @@
+<mvc:View controllerName="de.arvato.GRModul01.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic">
+
+	<sem:FullscreenPage id="idMain"
+		title="{i18n>App.Description} / {i18n>Main.Title}"
+		navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button text="{i18n>General.Create}" 
+				press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul01.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idFormLoading1" editable="true">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="4" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<!--f:FormElement label="{i18n>textEmployee}"> <f:fields> <FlexBox> 
+							<items> <Input value="{local>/Employee/Name}" editable="false"> <layoutData> 
+							<FlexItemData growFactor="1" /> </layoutData> </Input> <ndc:BarcodeScannerButton 
+							scanSuccess="onEmployeeBarcodeScanSuccess"> </ndc:BarcodeScannerButton> </items> 
+							</FlexBox> </f:fields> </f:FormElement -->
+
+						<f:FormElement>
+							<f:fields>
+								<HBox>
+									<!--Button icon="sap-icon://document"
+										press="onClearButtonPress" width="3rem"></Button-->
+										
+									<Button icon="sap-icon://delete"
+										press="onModeChangeButtonPress" width="3rem"></Button>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>Main.OpenCheck}">
+							<f:fields>
+								<List mode="SingleSelectMaster" id="idCheckList"
+									selectionChange="onCheckSelectionChange"
+									delete="onCheckDeletion"
+									items="{local>/OpenCheckList}">
+									<StandardListItem title="{local>CmrRef}"
+										info="{local>Client}" description="{local>Zgweno}" />
+								</List>
+								<!--List mode="SingleSelectMaster" id="idCheckList"
+									selectionChange="onCheckSelectionChange"
+									delete="onCheckDeletion"
+									items="{ path: 'erp>/CheckSet',
+											 parameters:{expand : 'LoggerSerialSet'} ,
+											filters: [{path:'State',operator:'LT', value1:'20'}]}">
+									<StandardListItem title="{erp>CmrRef}"
+										info="{erp>Client}" description="{erp>Zgweno}" />
+								</List-->
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul01.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

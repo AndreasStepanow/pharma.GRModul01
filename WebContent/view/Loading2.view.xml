@@ -1,0 +1,87 @@
+<mvc:View
+	controllerName="de.arvato.GRModul01.controller.Loading2"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic">
+
+	<sem:FullscreenPage id="idLoading2"
+		title="{i18n>App.Description} / {i18n>Loading.Title2}"
+		showNavButton="true" navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button text="{i18n>General.Next}" 
+				press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul01.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idFormLoading2" editable="true">
+			<!--f:title> <core:Title text="{i18n>titleCheckLoading1}" /> </f:title -->
+			<f:layout>
+				<!--f:ColumnLayout / -->
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="4" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+
+				<f:FormContainer>
+					<f:formElements>
+
+						<f:FormElement label="{i18n>textSpedition}">
+							<f:fields>
+								<Input id="idInputSpedition"
+									value="{
+									path : 'local>/Loading2/Spedition', 
+									type : 'sap.ui.model.type.String', 
+									constraints : {
+										minLength : 1,
+										maxLength : 30 } 
+									}" />
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>textVehicle}">
+							<f:fields>
+								<Input id="idInputVehicleReg" class="myCustomCSSClass"
+									value="{
+									path : 'local>/Loading2/VehicleReg',
+									type : 'sap.ui.model.type.String', 
+									constraints : {
+										minLength : 1,
+										maxLength : 30 } 
+							 	}" />
+
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement label="{i18n>textTimeOppenung}">
+							<f:fields>
+								<TimePicker id="idTimePicker01" change="onTimeOpeningChange"
+									value="{ path : 'local>/Loading2/TimeOfOpening', 
+											 type : 'sap.ui.model.odata.type.Time',
+											 formatOptions: {  
+    											pattern : 'HH:mm'
+  											}}"
+									minutesStep="5" secondsStep="60">
+								</TimePicker>
+
+							</f:fields>
+						</f:FormElement>											
+
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul01.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>

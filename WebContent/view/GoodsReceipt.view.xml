@@ -1,0 +1,266 @@
+<mvc:View
+	controllerName="de.arvato.GRModul01.controller.GoodsReceipt"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:ndc="sap.ndc"
+	xmlns:core="sap.ui.core" xmlns:sem="sap.m.semantic">
+
+	<!-- Version I -->
+
+	<sem:FullscreenPage id="idGoodsReceipt"
+		title="{i18n>App.Description} / {i18n>GoodsReceipt.Title}"
+		showNavButton="true" navButtonPress="onNavBack">
+
+		<sem:customHeaderContent>
+			<Button text="{i18n>General.Next}" press="onNavForward"></Button>
+		</sem:customHeaderContent>
+
+		<core:Fragment
+			fragmentName="de.arvato.GRModul01.fragment.DefaultHeader" type="XML" />
+
+		<f:Form id="idCheckGoodsReceipt" editable="true"
+			class="sapUiTinyMarginBegin">
+
+			<f:layout>
+
+				<f:ResponsiveGridLayout labelSpanXL="4"
+					labelSpanL="12" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1"
+					columnsM="1" singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<Text text="{i18n>GoodsReceipt.DlvCmrExist}">
+											<layoutData>
+												<FlexItemData styleClass="MyFlexItem" />
+											</layoutData>
+										</Text>
+										<RadioButtonGroup id="idCmrGroup" columns="2"
+										select="onDlvCmrExistSelect" >
+											<buttons>
+												<RadioButton id="idRadio01" class="radioButton"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/ExistCmr/yes}" />
+												<RadioButton id="idRadio02" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/ExistCmr/no}" />
+											</buttons>
+
+										</RadioButtonGroup>
+
+									</items>
+
+								</FlexBox>
+								<!--Switch customTextOn="Ja" customTextOff="Nein" state="{local>/GoodsReceipt/ExistCmr/selected}"></Switch -->
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<!--Switch customTextOn="Ja" customTextOff="Nein" change="onTempPrintoutSwitchCange" 
+											state="{local>/GoodsReceipt/ExistTempPrint/selected}"></Switch -->
+										<Text text="{i18n>GoodsReceipt.TempPrintoutExist}">
+											<layoutData>
+												<FlexItemData styleClass="MyFlexItem" />
+											</layoutData>
+										</Text>
+										<RadioButtonGroup columns="2"
+											select="onTempPrintoutSelect" id="idPrintoutGroup"
+											tooltip="{i18n>GoodsReceipt.TempPrintoutExistCom}">
+											<buttons>
+												<RadioButton id="idRadio03"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/ExistTempPrint/yes}" />
+												<RadioButton id="idRadio04" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/ExistTempPrint/no}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+						<!--f:FormElement> <f:fields> <FlexBox justifyContent="SpaceBetween" 
+							class="sapMTBStandard"> <items> <Text text="{i18n>GoodsReceipt.TemperatureLogger}" 
+							/> <RadioButtonGroup columns="1" id="idTLogGroup" select="onSelectTemperatureLoggerSelect"> 
+							<buttons> <RadioButton id="idRadio05" text="{i18n>textYes}" selected="{local>/GoodsReceipt/ExistTLog/yes}" 
+							/> <RadioButton id="idRadio06" text="{i18n>textNo}" selected="{local>/GoodsReceipt/ExistTLog/no}" 
+							/> </buttons> </RadioButtonGroup> </items> </FlexBox> </f:fields> </f:FormElement -->
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<!--Switch customTextOn="Ja" customTextOff="Nein" change="onPlombNumberSwitchCange" 
+											state="{local>/GoodsReceipt/ExistPlomb/selected}"></Switch -->
+										<Text text="{i18n>GoodsReceipt.PlombNumberExist}">
+											<layoutData>
+												<FlexItemData styleClass="MyFlexItem" />
+											</layoutData>
+										</Text>
+										<Button icon="sap-icon://bbyd-active-sales"
+											press="onPressPlombNumberExist" visible="{local>/GoodsReceipt/ExistPlomb/no}"></Button>
+										<RadioButtonGroup columns="2"
+											id="idPlombGroup" select="onPlombNumberSelect">
+											<buttons>
+												<RadioButton id="idRadio07"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/ExistPlomb/yes}" />
+												<RadioButton id="idRadio08" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/ExistPlomb/no}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+
+
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween" class="sapMTBStandard">
+									<items>
+										<Text text="{i18n>GoodsReceipt.TemperatureLogger}" />
+										<Button icon="sap-icon://bbyd-active-sales"
+											press="onPressTemperatureLogger" visible="{local>/GoodsReceipt/ExistTLog/yes}"></Button>
+										<RadioButtonGroup columns="2"
+											id="idTLogGroup" select="onSelectTemperatureLoggerSelect">
+											<buttons>
+												<RadioButton id="idRadio05"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/ExistTLog/yes}" />
+												<RadioButton id="idRadio06" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/ExistTLog/no}"/>
+											</buttons>
+										</RadioButtonGroup>										
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+						
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<!--Switch customTextOn="Ja" customTextOff="Nein" change="onColliCountDialogOpen" 
+											state="{local>/GoodsReceipt/ExistColliCnt/selected}"></Switch -->
+
+										<Text text="{i18n>GoodsReceipt.ColliCountExist}">
+											<layoutData>
+												<FlexItemData styleClass="MyFlexItem" />
+											</layoutData>
+										</Text>
+										<Button icon="sap-icon://bbyd-active-sales"
+											press="onPressColliCountExist" visible="{local>/GoodsReceipt/ExistColliCnt/no}"></Button>
+										<RadioButtonGroup columns="2"
+											select="onColliCountSelect" id="idColliCountGroup">
+											<buttons>
+												<RadioButton id="idRadio09"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/ExistColliCnt/yes}" />
+												<RadioButton id="idRadio10" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/ExistColliCnt/no}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement>
+							<f:fields>
+								<FlexBox justifyContent="SpaceBetween"
+									class="sapMTBStandard">
+									<items>
+										<!--Switch customTextOn="Ja" customTextOff="Nein" change="onColliStateDialogOpen" 
+											state="{local>/GoodsReceipt/ExistColliStt/selected}"></Switch -->
+										<Text text="{i18n>GoodsReceipt.ColliStateExist}">
+											<layoutData>
+												<FlexItemData styleClass="MyFlexItem" />
+											</layoutData>
+										</Text>
+										<Button icon="sap-icon://bbyd-active-sales"
+											press="onPressColliStateExist" visible="{local>/GoodsReceipt/ExistColliStt/no}"></Button>
+										<RadioButtonGroup columns="2"
+											select="onColliStateSelect" id="idColliStateGroup">
+											<buttons>
+												<RadioButton id="idRadio11"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/ExistColliStt/yes}" />
+												<RadioButton id="idRadio12" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/ExistColliStt/no}" />
+											</buttons>
+										</RadioButtonGroup>
+
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+						<f:FormElement>
+							<f:fields>
+
+								<FlexBox justifyContent="SpaceBetween">
+									<items>
+										<Text text="{i18n>GoodsReceipt.PalettHTExist}">
+											<layoutData>
+												<FlexItemData />
+											</layoutData>
+										</Text>
+										<Button icon="sap-icon://bbyd-active-sales"
+											press="onPressPalettHTExist"
+											visible="{=(${local>/GoodsReceipt/PalettHt/no} === true)||(${local>/GoodsReceipt/PalettHt/mixed} === true)}"
+											>
+										</Button>
+										<RadioButtonGroup columns="3"
+											select="onHTFlagSelect" id="idPalettHTGroup">
+											<buttons>
+												<RadioButton id="idRadio13"
+													text="{i18n>textYes}"
+													selected="{local>/GoodsReceipt/PalettHt/yes}" />
+												<RadioButton id="idRadio14" text="{i18n>textNo}"
+													selected="{local>/GoodsReceipt/PalettHt/no}" />
+												<RadioButton id="idRadio15"
+													text="{i18n>textMixed}"
+													selected="{local>/GoodsReceipt/PalettHt/mixed}" />
+											</buttons>
+										</RadioButtonGroup>
+									</items>
+								</FlexBox>
+
+							</f:fields>
+						</f:FormElement>
+
+					</f:formElements>
+				</f:FormContainer>
+
+			</f:formContainers>
+		</f:Form>
+
+		<sem:customFooterContent>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul01.fragment.DefaultFooter" type="XML" />
+		</sem:customFooterContent>
+
+	</sem:FullscreenPage>
+
+</mvc:View>
